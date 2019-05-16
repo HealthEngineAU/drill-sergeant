@@ -1,0 +1,36 @@
+{
+    "name": "healthengine/drill-sergeant",
+    "description": "Laravel queue monitoring",
+    "keywords": ["laravel", "queue", "prometheus", "exporter", "job", "worker"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jarryd Tilbrook",
+            "email": "jrad.tilbrook@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "DrillSergeant\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DrillSergeant\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DrillSergeant\\ServiceProvider"
+            ]
+        }
+    }
+}
