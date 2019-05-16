@@ -4,6 +4,7 @@ composer.lock
 
 # tests
 phpunit.xml
+.phpunit.result.cache
 clover.xml
 coverage*
 
