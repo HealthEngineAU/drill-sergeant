@@ -19,7 +19,14 @@ class IncrementJobCount
 
         if (!$cache->has($this->getCacheKey($job->getQueue(), $job->resolveName()))) {
             // laravel has a bug in some cache drivers that means `forever()` can't be used
-            $cache->put($this->getCacheKey($job->getQueue(), $job->resolveName()), 1, now()->addYears(5)->getTimestamp());
+            $cache->put(
+                $this->getCacheKey(
+                    $job->getQueue(),
+                    $job->resolveName()
+                ),
+                1,
+                now()->addYears(5)->getTimestamp()
+            );
         } else {
             $cache->increment($this->getCacheKey($job->getQueue(), $job->resolveName()));
         }
