@@ -15,17 +15,18 @@ class IncrementJobCount
     public function handle(JobProcessed $event)
     {
         $cache = Cache::store(config('drillsergeant.cache_store'));
+        $job = $event->job;
 
-        if (!$cache->has($this->getCacheKey($event->job->getQueue()))) {
+        if (!$cache->has($this->getCacheKey($job->getQueue(), $job->resolveName()))) {
             // laravel has a bug in some cache drivers that means `forever()` can't be used
-            $cache->put($this->getCacheKey($event->job->getQueue()), 1, now()->addYears(5)->getTimestamp());
+            $cache->put($this->getCacheKey($job->getQueue(), $job->resolveName()), 1, now()->addYears(5)->getTimestamp());
         } else {
-            $cache->increment($this->getCacheKey($event->job->getQueue()));
+            $cache->increment($this->getCacheKey($job->getQueue(), $job->resolveName()));
         }
     }
 
-    protected function getCacheKey(string $name)
+    protected function getCacheKey(string $queue, string $job)
     {
-        return config('drillsergeant.cache_prefix') . ":${name}";
+        return config('drillsergeant.cache_prefix') . ":${queue}:${job}";
     }
 }
