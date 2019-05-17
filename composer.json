@@ -11,6 +11,11 @@
         }
     ],
     "require": {
+        "illuminate/cache": "~5.8",
+        "illuminate/contracts": "~5.8",
+        "illuminate/events": "~5.8",
+        "illuminate/queue": "~5.8",
+        "illuminate/support": "~5.8"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.4",
