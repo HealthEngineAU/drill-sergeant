@@ -2,7 +2,9 @@
 
 namespace DrillSergeant;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Queue\Events\JobProcessed;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -14,14 +16,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . '/../config/drillsergeant.php' => config_path('drillsergeant.php')]);
-    }
 
-    /**
-     * Register bindings in the container.
-     *
-     * @return void
-     */
-    public function register()
-    {
+        Event::listen(JobProcessed::class, Listeners\IncrementJobCount::class);
     }
 }
