@@ -51,7 +51,8 @@ class IncrementJobCount
                         // update/set the counter
                         $cacheItems[$cacheKey] += 1;
                         // append this job to the list
-                        $cacheItems[static::CACHE_KEY_MONITORED_JOBS] = collect($cacheItems[static::CACHE_KEY_MONITORED_JOBS])
+                        $cacheItems[static::CACHE_KEY_MONITORED_JOBS] =
+                            collect($cacheItems[static::CACHE_KEY_MONITORED_JOBS])
                             ->push($cacheKey)
                             ->unique()
                             ->toArray();
